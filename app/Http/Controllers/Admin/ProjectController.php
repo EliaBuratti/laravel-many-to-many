@@ -123,6 +123,7 @@ class ProjectController extends Controller
             Storage::delete($project->cover_image);
         }
 
+        $project->technology()->detach();
         //dd($project);
         $project->delete();
 
