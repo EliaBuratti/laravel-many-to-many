@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\admin\TypeController;
+use App\Http\Controllers\admin\TechnologyController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Project;
 
@@ -46,10 +47,13 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     Route::resource('dashboard/project', ProjectController::class)->parameters([
         'project' => 'project:slug'
-    ]);;
+    ]);
     Route::resource('dashboard/type', TypeController::class)->parameters([
         'type' => 'type:slug'
-    ]);;
+    ]);
+    Route::resource('dashboard/technology', TechnologyController::class)->parameters([
+        'type' => 'type:slug'
+    ]);
 });
 
 

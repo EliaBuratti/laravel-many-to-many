@@ -94,13 +94,19 @@
                                 <li
                                     class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.project.index' ? 'bg-secondary rounded-3' : '' }}">
                                     <a class="nav-link text-white " href="{{ route('admin.project.index') }}">
-                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Project
+                                        <i class="fa-solid fa-clipboard-list fa-lg fa-fw"></i> Project
                                     </a>
                                 </li>
                                 <li
                                     class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.type.index' ? 'bg-secondary rounded-3' : '' }}">
                                     <a class="nav-link text-white " href="{{ route('admin.type.index') }}">
-                                        <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Type
+                                        <i class="fa-solid fa-grip fa-lg fa-fw"></i> Type
+                                    </a>
+                                </li>
+                                <li
+                                    class="nav-item mb-3 btn btn-outline-secondary text-start {{ Route::currentRouteName() == 'admin.technology.index' ? 'bg-secondary rounded-3' : '' }}">
+                                    <a class="nav-link text-white " href="{{ route('admin.technology.index') }}">
+                                        <i class="fa-solid fa-tags fa-lg fa-fw"></i> Technology
                                     </a>
                                 </li>
 

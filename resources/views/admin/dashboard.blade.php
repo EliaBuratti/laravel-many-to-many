@@ -24,7 +24,8 @@
                     <div class="card-header">{{ __('Total users') }}</div>
 
                     <div class="card-body text-center">
-                        <strong>Users</strong>
+                        <strong>Users: </strong>
+                        {{ $total_users }}
                     </div>
                 </div>
             </div>

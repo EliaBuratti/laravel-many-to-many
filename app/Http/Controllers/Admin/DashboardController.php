@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -14,6 +15,7 @@ class DashboardController extends Controller
     {
         $projects = Project::all();
         $types = Type::all();
-        return view('admin.dashboard', compact('projects', 'types'));
+        $total_users = User::all()->count();
+        return view('admin.dashboard', compact('projects', 'types', 'total_users'));
     }
 }
