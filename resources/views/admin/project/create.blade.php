@@ -85,6 +85,12 @@
                             {{ $technology->name }}</option>
                     @endforeach
                 </select>
+                @error('technologies')
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <strong>Attenzione!</strong> {{ $message }}
+                    </div>
+                @enderror
             </div>
 
             <div class="mb-3">

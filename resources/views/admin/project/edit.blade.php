@@ -73,6 +73,33 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="technologies" class="form-label">Technologies of project:</label>
+                    <select class="form-select @error('type_id') is-invalid  @enderror" multiple
+                        aria-label="multiple select example" name="technologies[]" id="technologies">
+                        <option disabled>Nothing selected</option>
+                        @foreach ($technologies as $technology)
+                            @if ($errors->any())
+                                <option value="{{ $technology->id }}"
+                                    {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
+                                    {{ $technology->name }}
+                                </option>
+                            @else
+                                <option value="{{ $technology->id }}"
+                                    {{ $project->technology->contains($technology) ? 'selected' : '' }}>
+                                    {{ $technology->name }}
+                                </option>
+                            @endif
+                        @endforeach
+                    </select>
+                    @error('technologies')
+                        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <strong>Attenzione!</strong> {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
                     <label for="project_link" class="form-label">Project link:</label>
                     <input type="text" class="form-control @error('project_link') is-invalid  @enderror"
                         name="project_link" id="project_link" placeholder="project_link of comic book"
