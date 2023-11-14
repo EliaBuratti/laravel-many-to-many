@@ -48,6 +48,20 @@
                     <li class=" list-group-item">
                         <strong>Type: </strong> {{ $project->type ? $project->type->name : 'Nothing type selected' }}
                     </li>
+                    <li class=" list-group-item d-flex gap-2">
+                        <strong>Technologies: </strong>
+                        <ul class="d-flex gap-1 list-unstyled">
+                            @forelse ($project->technology as $tech)
+                                <li class="badge bg-success">
+                                    <i class="fas fa-tag fa-xs fa-fw"></i>
+                                    {{ $tech->name }}
+                                </li>
+                            @empty
+                                <li class="badge bg-warning">Nothing technology selected</li>
+                            @endforelse
+                        </ul>
+
+                    </li>
                 </ul>
             </div>
         </div>

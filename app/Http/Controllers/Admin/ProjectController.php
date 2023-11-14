@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,8 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
-        return view('admin.project.create', compact('types'));
+        $technologies = Technology::all();
+        return view('admin.project.create', compact('types', 'technologies'));
     }
 
     /**
@@ -41,8 +43,8 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request, Project $project)
     {
-        $validated = $request->validated();
-        $data = $request->all();
+        $data = $request->validated();
+        //$data = $request->all();
 
         if ($request->has('cover_image')) {
             $img_path = Storage::put('cover_images', $request->cover_image);
@@ -53,8 +55,9 @@ class ProjectController extends Controller
 
         $data['slug'] = $project->createSlug($request->title);
 
-        //dd($data['slug']);
+        //dd($data);
         $new_project = Project::create($data);
+        $new_project->technology()->attach($request->technologies);
 
         return to_route('admin.project.index')->with('message', 'Created sucessfully');
     }

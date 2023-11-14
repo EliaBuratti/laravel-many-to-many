@@ -67,7 +67,22 @@
                     name="type_id" id="type_id">
                     <option selected disabled>Open this select menu</option>
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                        <option value="{{ $type->id }}" {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="technologies" class="form-label">Technologies of project:</label>
+                <select class="form-select @error('type_id') is-invalid  @enderror" multiple
+                    aria-label="multiple select example" name="technologies[]" id="technologies">
+                    <option disabled>Nothing selected</option>
+                    @foreach ($technologies as $technology)
+                        <option value="{{ $technology->id }}"
+                            {{ in_array($technology->id, old('technologies', [])) ? 'selected' : '' }}>
+                            {{ $technology->name }}</option>
                     @endforeach
                 </select>
             </div>

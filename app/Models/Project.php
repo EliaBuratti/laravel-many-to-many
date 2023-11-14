@@ -13,22 +13,21 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['title', 'description', 'slug', 'cover_image', 'skills', 'project_link', 'type_id', 'github_link'];
+
     public function createSlug($title)
     {
         return Str::slug($title, '-');
     }
-
-    protected $fillable = ['title', 'description', 'slug', 'cover_image', 'skills', 'project_link', 'type_id'];
-
 
     public function type(): BelongsTo
     {
         return $this->belongsTo(Type::class);
     }
 
-    public function tecnology(): BelongsToMany
+    public function technology(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Technology::class);
     }
 
     /*     protected function cover_image(): Attribute
