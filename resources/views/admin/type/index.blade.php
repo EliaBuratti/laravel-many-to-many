@@ -5,7 +5,7 @@
         <div class="container-fluid mt-4">
 
             <h2 class="fs-4 text-secondary my-4">
-                {{ __('Projects list') }}
+                {{ __('Type lists') }}
             </h2>
 
             @if (session('message'))

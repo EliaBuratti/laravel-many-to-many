@@ -23,6 +23,7 @@ class StoreTypeRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type_id' => 'nullable|exists:types,id',
             'name' => ['required', Rule::unique('types')->ignore($this->type)],
         ];
     }

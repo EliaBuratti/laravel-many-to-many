@@ -4,9 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTypeRequest;
+use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+
 
 class TypeController extends Controller
 {
@@ -45,27 +47,28 @@ class TypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Type $types)
+    public function show(Type $type)
     {
-        return view('admin.type.show', compact('types'));
+        return view('admin.type.show', compact('type'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Type $types)
+    public function edit(Type $type)
     {
-        return view('admin.type.edit', compact('types'));
+        return view('admin.type.edit', compact('type'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Type $type)
+    public function update(UpdateTypeRequest $request, Type $type)
     {
-        $validated = $request->validated();
+        $data = $request->validated();
         $data['slug'] = $type->createSlug($request->name);
 
+        //dd($data);
         $type->update($data);
         return to_route('admin.type.index')->with('message', 'Type updated sucessfully');
     }
