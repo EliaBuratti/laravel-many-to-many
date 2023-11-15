@@ -73,9 +73,9 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        $technology->project()->detach();
+        $technology->project()->detach(); //scollego dalla tabella pivot
 
-        $technology->delete();
+        $technology->delete(); //ora rimuovo il campo dalla tabella technologies
 
         return to_route('admin.technology.index')->with('message', 'Delete sucessfully');
     }

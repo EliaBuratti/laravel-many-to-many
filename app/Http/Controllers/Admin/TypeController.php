@@ -79,15 +79,16 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        $projects = Project::all()->where('type_id', '=', $type->id)->all();
+        $projects = Project::all()->where('type_id', '=', $type->id)->all(); //ottengo tutti i progetti con questo id del type
 
+        //ciclo i risultati settando su null il campo type_id e faccio l'update
         foreach ($projects as $project) {
             $project->type_id = null;
             $project->update();
         }
 
         //dd($type);
-        $type->delete($type->id);
+        $type->delete();
         return to_route('admin.type.index')->with('message', 'Delete sucessfully');
     }
 }
