@@ -24,7 +24,7 @@ class UpdateTechnologyRequest extends FormRequest
     {
         return [
             /* 'type_id' => 'nullable|exists:types,id', */
-            'name' => ['required', Rule::unique('types')->ignore($this->type)],
+            'name' => ['required', Rule::unique('technologies')->ignore($this->type), 'max:100'],
         ];
     }
 
@@ -33,6 +33,7 @@ class UpdateTechnologyRequest extends FormRequest
         return [
             'name' => 'The :attribute type already exisist.',
             'name.required' => 'This field was not empty',
+            'name.max' => 'The name field accept max 100 characters',
         ];
     }
 }

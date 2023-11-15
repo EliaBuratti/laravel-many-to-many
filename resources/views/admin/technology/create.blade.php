@@ -13,10 +13,10 @@
   {{ dd($errors->all()) }} 
         @endif --}}
 
-        <form action="{{ route('admin.type.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation">
+        <form action="{{ route('admin.technology.store') }}" method="POST" class="needs-validation">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Type name:</label>
+                <label for="name" class="form-label">Technology name:</label>
                 <input type="text" class="form-control @error('name') is-invalid  @enderror" name="name" id="name"
                     placeholder="Write new type" value="{{ old('name') }}">
                 @error('name')
@@ -29,7 +29,7 @@
 
             <div class="action mt-4 w-100 d-flex justify-content-between">
                 <button type="submit" class="btn btn-primary">Create</button>
-                <a class="btn btn-success" href="{{ route('admin.type.index') }}">Go back</a>
+                <a class="btn btn-success" href="{{ route('admin.technology.index') }}">Go back</a>
             </div>
         </form>
     </div>

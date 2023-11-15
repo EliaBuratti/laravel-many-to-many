@@ -52,7 +52,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
         'type' => 'type:slug'
     ]);
     Route::resource('dashboard/technology', TechnologyController::class)->parameters([
-        'type' => 'type:slug'
+        'technology' => 'technology:slug'
     ]);
 });
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Type;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -78,7 +79,15 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        $type->delete();
+        $projects = Project::all()->where('type_id', '=', $type->id)->all();
+
+        foreach ($projects as $project) {
+            $project->type_id = null;
+            $project->update();
+        }
+
+        //dd($type);
+        $type->delete($type->id);
         return to_route('admin.type.index')->with('message', 'Delete sucessfully');
     }
 }
