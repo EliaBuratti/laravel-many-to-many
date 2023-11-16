@@ -3,10 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\project;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use Faker\Factory;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectSeeder extends Seeder
 {
@@ -21,10 +22,11 @@ class ProjectSeeder extends Seeder
             $project->title = $faker->words(3, true);
             $project->slug = Str::slug($project->title, '-');
             $project->description = $faker->paragraph();
-            $project->cover_image = $faker->imageUrl(640, 400, 'Posts', false);
+            //$project->cover_image = $faker->imageUrl(640, 400, 'Posts', false);
+            $project->cover_image = 'placeholder/Placeholder.png';
             $project->skills = implode(', ', $faker->words(5));
             $project->project_link = $faker->url();
-            //dd($project);
+            //dd($project->cover_image);
             $project->save();
         }
     }

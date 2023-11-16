@@ -30,7 +30,7 @@ class Project extends Model
         return $this->belongsToMany(Technology::class);
     }
 
-    /*     protected function cover_image(): Attribute
+    protected static function cover_image(): Attribute
     {
         return Attribute::make(
             get: function ($value) {
@@ -42,5 +42,5 @@ class Project extends Model
                 }
             }
         );
-    } */
+    }
 }
