@@ -23,7 +23,8 @@ class ProjectSeeder extends Seeder
             $project->slug = Str::slug($project->title, '-');
             $project->description = $faker->paragraph();
             //$project->cover_image = $faker->imageUrl(640, 400, 'Posts', false);
-            $project->cover_image = 'placeholder/Placeholder.png';
+            $project->cover_image = Storage::copy('placeholder/Placeholder.png', 'cover_images/Placeholder'. $i . '.png');
+            $project->cover_image = 'cover_images/Placeholder'. $i . '.png';
             $project->skills = implode(', ', $faker->words(5));
             $project->project_link = $faker->url();
             //dd($project->cover_image);
