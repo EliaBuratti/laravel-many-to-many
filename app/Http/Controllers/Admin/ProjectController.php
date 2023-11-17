@@ -54,6 +54,7 @@ class ProjectController extends Controller
         //$data['slug'] = Str::slug($request->title);
 
         $data['slug'] = $project->createSlug($request->title);
+        $data['skills'] = $project->createSkills($request->skills);
 
         //dd($data);
         $new_project = Project::create($data);
@@ -89,6 +90,7 @@ class ProjectController extends Controller
     {
         $validated = $request->validated();
         $data = $request->all();
+
         if ($request->has('cover_image')) {
             $img_path = Storage::put('cover_images', $request->cover_image);
 
@@ -103,7 +105,10 @@ class ProjectController extends Controller
         if (!Str::is($project->getOriginal('title'), $request->title)) {
             $data['slug'] = $project->createSlug($request->title);
         }
-        //dd($data);
+        if (!Str::is($project->getOriginal('skills'), $request->title)) {
+            $data['skills'] = $project->createSkills($request->skills);
+        }
+
         $project->update($data);
 
         if ($request->has('technologies')) {

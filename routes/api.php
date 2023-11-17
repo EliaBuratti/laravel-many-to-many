@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Project;
+use App\Models\Type;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* 
+route api prova funzionante
+
+Route::get('/', function () {
+
+    return response()->json([
+    'response' => Project::with('type', 'technology')->paginate(5),
+    ]);
+}); */
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+

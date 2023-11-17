@@ -20,6 +20,11 @@ class Project extends Model
         return Str::slug($title, '-');
     }
 
+    public function createSkills($title)
+    {
+        return Str::slug($title, ', ');
+    }
+
     public function type(): BelongsTo
     {
         return $this->belongsTo(Type::class);
@@ -28,19 +33,5 @@ class Project extends Model
     public function technology(): BelongsToMany
     {
         return $this->belongsToMany(Technology::class);
-    }
-
-    protected static function cover_image(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value) {
-                if (strstr($value, 'http') !== false) {
-                    return $value;
-                } else {
-                    //dd($value);
-                    return asset('storage/' . $value);
-                }
-            }
-        );
     }
 }
